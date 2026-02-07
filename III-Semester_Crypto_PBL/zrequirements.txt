@@ -1,0 +1,14 @@
+bcrypt==5.0.0
+Flask==3.1.2
+pycryptodome==3.23.0
+
+
+source venv/bin/activate       
+
+
+venv\Scripts\activate     
+pip install pycryptodome       
+python3 node.py        
+python3 -m site                
+pip show pycryptodome 
+python -m flask run --port=5001

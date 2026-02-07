@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node Status - SecureChain</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .status-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .status-card.good {
+            border-left-color: #2ecc71;
+        }
+        .status-card.warning {
+            border-left-color: #f39c12;
+        }
+        .status-card.error {
+            border-left-color: #e74c3c;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .connection-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px 0;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .qr-code {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .qr-code img {
+            max-width: 200px;
+            height: auto;
+        }
+        .instructions {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        .nav-links {
+            margin: 20px 0;
+        }
+        .nav-links a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 Node Status</h1>
+        
+        <div class="nav-links">
+            {% if is_authenticated %}
+                <a href="{{ url_for('index') }}" class="btn">Dashboard</a>
+                <a href="{{ url_for('view_messages') }}" class="btn">My Messages</a>
+                <a href="{{ url_for('blockchain_explorer') }}" class="btn">Blockchain Explorer</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn">Login</a>
+                <a href="{{ url_for('signup') }}" class="btn">Sign Up</a>
+            {% endif %}
+        </div>
+
+        <div class="status-card good">
+            <h3>Node Status: <span style="color: #2ecc71;">Online</span></h3>
+            <p>Your SecureChain node is running and accessible on your local network.</p>
+        </div>
+
+        <div class="connection-info">
+            <h2>Connection Information</h2>
+            
+            <h3>Local Access</h3>
+            <p>Access from this device:</p>
+            <code>http://localhost:{{ port }}</code>
+            
+            <h3>Network Access</h3>
+            <p>Access from other devices on the same network:</p>
+            <code>http://{{ local_ip }}:{{ port }}</code>
+            
+            <!-- <div class="qr-code">
+                <div id="qrcode"></div>
+                <p></p>
+            </div> 
+            -->
+        </div>
+
+        <div class="instructions">
+            <h2>How to Connect from Another Device</h2>
+            <ol>
+                <li>Make sure both devices are connected to the same network</li>
+                <li>On the other device, open a web browser</li>
+                <li>Enter the Network Access URL shown above</li>
+                <li>Create an account or log in</li>
+            </ol>
+            
+            <h3>Troubleshooting</h3>
+            <ul>
+                <li>If you can't connect, check your firewall settings</li>
+                <li>Make sure port {{ port }} is open in your firewall</li>
+                <li>Try disabling any VPN or proxy services</li>
+            </ul>
+        </div>
+        
+        <div class="status-card">
+            <h3>Blockchain Status</h3>
+            <p>Connected to the SecureChain network</p>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Generate QR code for easy mobile access
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrText = `http://${window.location.hostname}:{{ port }}`;
+            
+            // This is a simple QR code implementation - in production, you might want to use a library
+            const qrCodeDiv = document.getElementById('qrcode');
+            if (qrCodeDiv) {
+                // In a real app, you would use a QR code library here
+                // For example: new QRCode(qrCodeDiv, qrText);
+                qrCodeDiv.innerHTML = `<strong>${qrText}</strong>`;
+            }
+        });
+    </script> -->
+</body>
+</html>

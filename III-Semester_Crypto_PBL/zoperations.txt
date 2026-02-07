@@ -1,0 +1,6 @@
+sqlite3 securechain.db
+SELECT * FROM users;
+SELECT * FROM messages;
+
+
+

@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Messages - SecureChain</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e5ddd5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29-22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-7c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d1d7db' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+            color: #111b21;
+            height: 100vh;
+            display: flex;
+        }
+        
+        .sidebar {
+            width: 350px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border-right: 1px solid #e2e8f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.5);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar:hover {
+            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(226, 232, 240, 0.8);
+        }
+
+        .sidebar-header {
+            padding: 20px 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .app-logo {
+            display: flex;
+            align-items: center;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .app-logo h2 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .back-link {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(100, 116, 139, 0.1);
+        }
+
+        .back-link:hover {
+            color: #00a884;
+            background: rgba(0, 168, 132, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .back-link span {
+            margin-right: 6px;
+            font-size: 1.1em;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f1f5f9;
+        }
+
+        /* Enhanced custom scrollbar */
+        .sidebar-content::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 2px;
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 2px;
+            transition: background-color 0.2s ease;
+        }
+
+        .sidebar-content::-webkit-scrollbar-thumb:hover {
+            background-color: #94a3b8;
+        }
+
+        .section-header {
+            padding: 12px 24px;
+            font-size: 0.75em;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            background: rgba(100, 116, 139, 0.05);
+            border-left: 3px solid #00a884;
+            transition: all 0.2s ease;
+        }
+
+        .user-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .user-item {
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: #ffffff;
+            margin: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transform: translateX(0);
+        }
+
+        .user-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(135deg, #00a884 0%, #059669 100%);
+            border-radius: 0 12px 12px 0;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+        }
+
+        .user-item:hover {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-color: #e2e8f0;
+            transform: translateY(-2px) translateX(4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-item:hover::before {
+            width: 4px;
+        }
+
+        .user-item.active {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-color: #00a884;
+            box-shadow: 0 4px 20px rgba(0, 168, 132, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px) translateX(2px);
+        }
+
+        .user-item.active::before {
+            width: 4px;
+        }
+
+        .user-item.active .user-name {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .user-details {
+            flex: 1;
+            margin-left: 16px;
+            min-width: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .user-name-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #1e293b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.95em;
+            transition: color 0.2s ease;
+        }
+
+        .last-message {
+            font-size: 0.8em;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
+        .message-time {
+            font-size: 0.75em;
+            color: #94a3b8;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+        }
+
+        .user-item:hover .message-time {
+            color: #475569;
+        }
+
+        .unread-count {
+            background: linear-gradient(135deg, #00a884 0%, #059669 100%);
+            color: white;
+            font-size: 0.7em;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            min-width: 20px;
+            text-align: center;
+            margin-left: 12px;
+            box-shadow: 0 2px 8px rgba(0, 168, 132, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .online-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            animation: onlinePulse 2s infinite;
+            z-index: 3;
+        }
+
+        @keyframes onlinePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+                transform: scale(1.1);
+            }
+        }
+
+        .user-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #475569;
+            font-size: 1.3em;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .user-item:hover .user-avatar {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-avatar.all-conversations {
+            background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 100%);
+            color: #0277bd;
+            font-size: 1.4em;
+            box-shadow: 0 2px 8px rgba(3, 169, 244, 0.2);
+        }
+
+        .user-avatar.online {
+            border: 3px solid #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            color: #059669;
+        }
+
+        /* Enhanced responsive design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 320px;
+            }
+
+            .user-item {
+                padding: 14px 16px;
+                margin: 3px 8px;
+            }
+
+            .user-avatar {
+                width: 48px;
+                height: 48px;
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: fixed;
+                z-index: 1000;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                width: 100%;
+            }
+        }
+
+        /* Loading animation for user items */
+        .user-item {
+            animation: slideInFromLeft 0.4s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .user-item:nth-child(1) { animation-delay: 0.1s; }
+        .user-item:nth-child(2) { animation-delay: 0.15s; }
+        .user-item:nth-child(3) { animation-delay: 0.2s; }
+        .user-item:nth-child(4) { animation-delay: 0.25s; }
+        .user-item:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Enhanced focus states for accessibility */
+        .user-item:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 168, 132, 0.3);
+        }
+
+        .back-link:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.3);
+        }
+        
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px 15px 10px;
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #b3b3b3 #e5ddd5;
+        }
+        
+        .messages-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .messages-container::-webkit-scrollbar-track {
+            background: #e5ddd5;
+        }
+        
+        .messages-container::-webkit-scrollbar-thumb {
+            background-color: #b3b3b3;
+            border-radius: 3px;
+        }
+        
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            padding: 4px 20px;
+            max-width: 80%;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message {
+            background: white;
+            border-radius: 18px;
+            padding: 8px 16px 6px;
+            margin: 2px 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            position: relative;
+            word-wrap: break-word;
+            max-width: 100%;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+        
+        .message.sent {
+            background: #dcf8c6;
+            margin-left: auto;
+            border-top-right-radius: 5px;
+            animation: slideInRight 0.3s ease-out;
+        }
+        
+        .message.received {
+            background: white;
+            margin-right: auto;
+            border-top-left-radius: 5px;
+            animation: slideInLeft 0.3s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInLeft {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .message-time {
+            font-size: 0.7em;
+            color: #667781;
+            margin-top: 2px;
+            text-align: right;
+            padding-right: 4px;
+            opacity: 0.8;
+            transition: opacity 0.2s ease;
+        }
+        
+        .message:hover .message-time {
+            opacity: 1;
+        }
+        
+        .message.sent .message-time {
+            color: #1b8e3e;
+        }
+        
+        /* Make sure the messages container fills available space */
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+            font-weight: normal;
+        }
+        
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+        
+        .status-encrypted {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+        
+        .status-delivered {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status-failed {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .message.sent .message-header {
+            border-left-color: #4CAF50;
+        }
+        
+        .message.received .message-header {
+            border-left-color: #2196F3;
+        }
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 8px 2px;
+            margin-bottom: 2px;
+        }
+        .message-sender, .message-receiver {
+            font-weight: bold;
+        }
+        .message-time {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        .message-content {
+            margin: 0;
+            padding: 0;
+        }
+        .encrypted {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            word-break: break-all;
+            font-size: 0.9em;
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+        .decrypted {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            color: #e74c3c;
+            font-style: italic;
+        }
+        .nav-links {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav-links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .nav-links a:hover {
+            background: #2980b9;
+        }
+        .no-messages {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar for user list -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="header-content">
+                <div class="app-logo">
+                    <span style="font-size: 1.5em; margin-right: 10px;">⛓️‍💥</span>
+                    <h2>SecureChain</h2>
+                </div>
+                <a href="{{ url_for('index') }}" class="back-link">
+                    <span>⬅</span> Back to Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="section-header">All Conversations</div>
+            <ul class="user-list">
+                <!-- <li class="user-item {% if not selected_user_id %}active{% endif %}" data-user-id="">
+                    <div class="user-avatar all-conversations">
+                        <span>👥</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name">All Conversations</span>
+                        <span class="last-message">View all messages</span>
+                    </div>
+                    <span class="message-time">Now</span>
+                </li> -->
+                
+                {% for user in all_users %}
+                    {% if user.id != session.user_id %}
+                    <li class="user-item {% if selected_user_id == user.id %}active{% endif %}" data-user-id="{{ user.id }}">
+                        <div class="user-avatar">
+                            {{ user.username|first|upper }}
+                            <!-- <span class="online-dot"></span> -->
+                        </div>
+                        <div class="user-details">
+                            <div class="user-name-row">
+                                <span class="user-name">{{ user.username }}</span>
+                            <span class="message-time">now</span>
+                            </div>
+                            <span class="last-message">Check for New Messages...</span>
+                        </div>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Main content area -->
+    <div class="main-content">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h1>{% if selected_user_id %}
+                    {% for user in all_users %}
+                        {% if user.id == selected_user_id %}
+                            {{ user.username }}'s Messages
+                        {% endif %}
+                    {% endfor %}
+                    {% else %}
+                        All Messages
+                    {% endif %}
+                </h1>
+                <div>
+                    <a href="{{ url_for('blockchain_explorer') }}" class="button">View Blockchain</a>
+                    <button onclick="window.location.reload()" class="button">
+                        <span>⟳ Refresh</span>
+                    </button>
+                </div>
+            </div>
+
+        {% if not messages %}
+            <div class="no-messages">
+                <p>No messages yet. Send a message to get started!</p>
+            </div>
+        {% else %}
+            <!-- Added padding-bottom to account for fixed input area -->
+            <div class="messages-container" style="display: flex; flex-direction: column; justify-content: flex-end; padding: 10px 0 80px; height: calc(100vh - 200px); overflow-y: auto; -webkit-overflow-scrolling: touch; margin-bottom: 20px;">
+                {% for msg in messages|reverse %}
+                <div class="message-container {% if msg.sender_id == session['user_id'] %}sent{% else %}received{% endif %}" data-sender-id="{{ msg.sender_id }}">
+                    <div class="message {% if msg.sender_id == session['user_id'] %}sent{% else %}received{% endif %}">
+                        {% if selected_user_id == None %}
+                        <div class="message-header">
+                            <span class="message-sender">
+                                {% if msg.sender_id == session['user_id'] %}
+                                    You
+                                {% else %}
+                                    {{ msg.sender_username }}
+                                {% endif %}
+                            </span>
+                            <span class="message-time">{{ msg.formatted_time }}</span>
+                        </div>
+                        {% endif %}
+                        
+                        <div class="message-content">
+                            {% if 'decrypted_text' in msg %}
+                                {{ msg.decrypted_text }}
+                            {% elif 'decryption_error' in msg %}
+                                <span class="error">🔒 Message could not be decrypted</span>
+                            {% elif msg.receiver_id == session['user_id'] %}
+                                <span class="decrypting">🔒 Decrypting message...</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="message-time">
+                            {{ msg.formatted_time }}
+                            {% if msg.sender_id == session['user_id'] %}
+                                <span class="message-status">
+                                    {% if msg.status == 'delivered' %}
+                                        <span style="color: #53bdeb;">✓✓</span>
+                                    {% else %}
+                                        <span>✓</span>
+                                    {% endif %}
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.user-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const userId = this.getAttribute('data-user-id');
+                    const url = new URL(window.location.href);
+                    
+                    // loading animation
+                    this.style.transform = 'scale(0.98)';
+                    this.style.opacity = '0.8';
+                    
+                    setTimeout(() => {
+                        if (userId) {
+                            url.searchParams.set('user_id', userId);
+                        } else {
+                            url.searchParams.delete('user_id');
+                        }
+                        window.location.href = url.toString();
+                    }, 150);
+                });
+
+                // keyboard navigation
+                item.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('role', 'button');
+                item.setAttribute('aria-label', `Chat with ${this.querySelector('.user-name').textContent}`);
+            });
+
+            //Smooth scroll behavior to sidebar content
+            const sidebarContent = document.querySelector('.sidebar-content');
+            if (sidebarContent) {
+                let isScrolling = false;
+                
+                sidebarContent.addEventListener('scroll', function() {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(function() {
+                            // Add subtle parallax effect to avatars during scroll
+                            const avatars = document.querySelectorAll('.user-avatar');
+                            const scrollTop = sidebarContent.scrollTop;
+                            
+                            avatars.forEach((avatar, index) => {
+                                const speed = 0.1;
+                                const yPos = -(scrollTop * speed);
+                                avatar.style.transform = `translateY(${yPos}px)`;
+                            });
+                            
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            }
+
+
+
+            // Enhanced back button animation
+            const backLink = document.querySelector('.back-link');
+            if (backLink) {
+                backLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Add exit animation
+                    this.style.transform = 'translateX(-5px)';
+                    this.style.opacity = '0.8';
+                    
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 200);
+                });
+            }
+
+            // Add floating animation to online dots
+            const onlineDots = document.querySelectorAll('.online-dot');
+            onlineDots.forEach((dot, index) => {
+                setTimeout(() => {
+                    dot.style.animationDelay = `${index * 0.2}s`;
+                }, 100);
+            });
+
+            // Add stagger animation to user items on load
+            const userItems = document.querySelectorAll('.user-item');
+            userItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add hover sound effect (visual feedback)
+            let hoverTimeout;
+            document.querySelectorAll('.user-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    clearTimeout(hoverTimeout);
+                    this.style.transform = 'translateY(-2px) translateX(4px) scale(1.02)';
+                    
+                    // Add subtle glow effect
+                    const avatar = this.querySelector('.user-avatar');
+                    if (avatar) {
+                        avatar.style.boxShadow = '0 6px 20px rgba(0, 168, 132, 0.3)';
+                    }
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    hoverTimeout = setTimeout(() => {
+                        if (!this.classList.contains('active')) {
+                            this.style.transform = 'translateY(0) translateX(0) scale(1)';
+                            
+                            const avatar = this.querySelector('.user-avatar');
+                            if (avatar) {
+                                avatar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
+                            }
+                        }
+                    }, 50);
+                });
+            });
+        });
+        
+        // Add active class to message items from the selected user
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedUserId = "{{ selected_user_id|tojson|safe }}";
+            if (selectedUserId) {
+                const messages = document.querySelectorAll('.message');
+                messages.forEach(msg => {
+                    const senderId = msg.getAttribute('data-sender-id');
+                    if (senderId == selectedUserId) {
+                        msg.classList.add('highlighted');
+                    }
+                });
+            }
+        });
+        
+        // Handle message sending
+        document.addEventListener('DOMContentLoaded', function() {
+            const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
+            const messagesContainer = document.querySelector('.messages-container');
+            const selectedUserId = "{{ selected_user_id|tojson|safe }}";
+            
+            if (messageInput && sendButton) {
+                // Auto-resize textarea
+                messageInput.addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+                
+                // Send message on Enter (Shift+Enter for new line)
+                messageInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+                
+                // Send button click handler
+                sendButton.addEventListener('click', sendMessage);
+                
+                // Update send button state
+                messageInput.addEventListener('input', function() {
+                    sendButton.disabled = this.value.trim() === '' || !selectedUserId;
+                });
+                
+                function sendMessage() {
+                    const messageText = messageInput.value.trim();
+                    if (messageText === '' || !selectedUserId) return;
+                    
+                    // Show loading state
+                    sendButton.disabled = true;
+                    const originalText = sendButton.innerHTML;
+                    sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                    
+                    // Send message to server
+                    fetch('/send_message', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            receiver_id: selectedUserId,
+                            message: messageText
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Clear input and reset height
+                            messageInput.value = '';
+                            messageInput.style.height = 'auto';
+                            
+                            // Scroll to bottom to show new message
+                            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                            
+                            // Refresh messages
+                            window.location.reload();
+                        } else {
+                            alert('Failed to send message: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Failed to send message. Please try again.');
+                    })
+                    .finally(() => {
+                        sendButton.disabled = false;
+                        sendButton.innerHTML = originalText;
+                    });
+                }
+            }
+            
+            // Scroll to bottom of messages on load and ensure it stays at bottom
+            function scrollToBottom() {
+                if (messagesContainer) {
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }
+            }
+            
+            // Initial scroll to bottom
+            scrollToBottom();
+            
+            // Also scroll to bottom when window is resized
+            window.addEventListener('resize', scrollToBottom);
+            
+            // Auto-scroll to bottom when new messages are added
+            const observer = new MutationObserver(scrollToBottom);
+            if (messagesContainer) {
+                observer.observe(messagesContainer, { childList: true, subtree: true });
+            }
+        });
+
+    </script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Message Input Area -->
+    {% if selected_user_id %}
+    <div class="message-input-container">
+        <div class="message-input-wrapper">
+            <!-- <button type="button" class="message-action-btn" title="Attach file">
+                <i class="fas fa-paperclip"></i>
+            </button> -->
+            <textarea 
+                id="message-input" 
+                class="message-input" 
+                placeholder="Type a message..."
+                rows="1"
+                spellcheck="true"
+                autocomplete="off"
+                autofocus
+                aria-label="Type your message"
+            ></textarea>
+            <!-- <button type="button" class="message-action-btn" title="Emoji">
+                <i class="far fa-smile"></i>
+            </button> -->
+        </div>
+        <button type="button" id="send-button" class="send-button" disabled aria-label="Send message">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+    {% endif %}
+    
+    <style>
+        /* Additional styles for the message filtering */
+        .highlighted {
+            border-left: 4px solid #3498db !important;
+            background-color: #f8f9fa;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #34a1db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .button:hover {
+            background: #2980b9;
+        }
+        
+        /* Message input area */
+        .message-input-container {
+            position: fixed;
+            bottom: 0;
+            left: 350px;
+            right: 0;
+            background: #f0f2f5;
+            padding: 15px 20px;
+            border-top: 1px solid #e9edef;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+            transition: all 0.3s ease;
+            max-width: 900px;
+            margin: 0 auto;
+            height: 80px;
+        }
+        
+        .message-input-wrapper {
+            flex: 1;
+            display: flex;
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px 15px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e9edef;
+        }
+        
+        .message-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            resize: none;
+            max-height: 100px;
+            min-height: 20px;
+            line-height: 1.4;
+            padding: 8px 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .send-button {
+            background: #00a884;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        
+        .send-button:hover {
+            background: #008f73;
+        }
+        
+        .send-button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .message-actions {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        
+        .message-action-btn {
+            background: none;
+            border: none;
+            color: #54656f;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        
+        .message-action-btn:hover {
+            background: #e9edef;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .message-input-container {
+                left: 0;
+                padding: 10px;
+            }
+            
+            .sidebar {
+                width: 100%;
+                z-index: 1000;
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</body>
+</html>
